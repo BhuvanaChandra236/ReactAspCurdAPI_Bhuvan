@@ -1,0 +1,6 @@
+@ReactASPCurdAPI_HostAddress = http://localhost:5249
+
+GET {{ReactASPCurdAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
