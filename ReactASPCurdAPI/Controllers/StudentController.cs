@@ -10,16 +10,24 @@ namespace ReactASPCurdAPI.Controllers
     public class StudentController : ControllerBase
     {
         private readonly StudentDbContext _studentDbContext;
-        public StudentController(StudentDbContext studentDbContext) 
+        public StudentController(StudentDbContext studentDbContext)
         {
             _studentDbContext = studentDbContext;
-        
+
         }
         [HttpGet]
         [Route("Getstudent")]
-        public async Task <IEnumerable<Student>>GetStudents()
+        public async Task<IEnumerable<Student>> GetStudents()
         {
             return await _studentDbContext.Student.ToListAsync();
+        }
+        [HttpPost]
+        [Route("Addstudent")]
+        public async Task<Student> Addstudent(Student objStudent)
+        {
+            _studentDbContext.Student.Add(objStudent);
+            await _studentDbContext.SaveChangesAsync();
+            return objStudent;
         }
         
     }
