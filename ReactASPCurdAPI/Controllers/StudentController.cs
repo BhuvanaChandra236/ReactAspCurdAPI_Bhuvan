@@ -30,5 +30,15 @@ namespace ReactASPCurdAPI.Controllers
             return objStudent;
         }
         //this is test by bhuvan for gethub branch updting//
+
+        //changes for Student Data Update 
+        [HttpPatch]
+        [Route("Updatestudent/{id}")]
+        public async Task<Student> Updatestudent(Student objStudent)
+        {
+            _studentDbContext.Entry(objStudent).State = EntityState.Modified;
+            await _studentDbContext.SaveChangesAsync();
+            return objStudent;
+        }
     }
 }//This is test by charan from github //
