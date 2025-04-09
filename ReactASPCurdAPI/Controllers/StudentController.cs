@@ -40,5 +40,26 @@ namespace ReactASPCurdAPI.Controllers
             await _studentDbContext.SaveChangesAsync();
             return objStudent;
         }
+
+        //changes for Student data delete
+        [HttpDelete]
+        [Route("DeleteStudent/{id}")]
+        public bool DeleteStudent (int id)
+        {
+            bool a = false;
+            var student = _studentDbContext.Student.Find(id);
+            if(student!=null)
+            {
+                a = true;
+                _studentDbContext.Entry(student).State = EntityState.Deleted;//Entity framework is doing this internally or manually we have toi run delete querry
+                _studentDbContext.SaveChanges();
+            }
+            else
+            {
+                a = false;
+            }
+            return a;
+        }
+
     }
 }//This is test by charan from github //
